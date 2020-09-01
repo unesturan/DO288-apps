@@ -9,7 +9,7 @@ ENV	  JAVA_OPTIONS -Xmx512m
 # Install the Java runtime, create a user for running the app, and set permissions
 RUN   yum install -y --disableplugin=subscription-manager java-1.8.0-openjdk-headless && \
       yum clean all --disableplugin=subscription-manager -y && \
-      useradd wildfly && \
+#      useradd wildfly && \
       mkdir -p /opt/app-root/bin
 
 # Copy the runnable fat JAR to the container.
@@ -22,7 +22,8 @@ RUN   chown -R wildfly:wildfly /opt/app-root && \
 
 EXPOSE 8080
 
-USER  wildfly
+#USER  wildfly
+USER  1001
 
 # Run the fat JAR
 CMD   /opt/app-root/bin/run-app.sh
